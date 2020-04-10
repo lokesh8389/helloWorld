@@ -6,6 +6,6 @@ node{
         git 'https://github.com/lokesh8389/helloWorld'
     }
     stage('Compile-Package') {
-        mvn 'clean package'
+        bat 'mvn clean package'
     }
 }

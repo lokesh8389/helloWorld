@@ -9,7 +9,6 @@ node{
         echo 'Check Out Done'
     }
     stage('Compile-Package'){
-        mvn compile
         mvn package
     }
 }

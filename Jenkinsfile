@@ -5,7 +5,11 @@ node{
     stage('SCM Checkout'){
         git 'https://github.com/lokesh8389/helloWorld'
     }
+    stage('hello World'){
+        echo 'Check Out Done'
+    }
     stage('Compile-Package'){
-        sh 'mvn package'
+        mvn compile
+        mvn package
     }
 }

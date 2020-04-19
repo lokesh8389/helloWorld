@@ -1,0 +1,21 @@
+node{
+    stage('helloWorld'){
+        echo 'Hello World'
+    }
+    stage('SCM Checkout'){
+        git 'https://github.com/lokesh8389/helloWorld'
+    }
+    stage('Compile-Package') {
+        def mvnHome = tool name: 'Maven3', type: 'maven'
+        sh "${mvnHome}/bin/mvn -version"
+		sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore=true clean deploy"
+    }
+    stage('Tocat-Deployment'){
+        sshagent(['Key1']) {
+            def tomcatDevIp ='IP_Address'
+            sh "ssh user@${tomcatDevIp} sudo rm -rf /opt/tomcat/webapps/*.war"
+            sh "scp -o StrictHostKeyChecking=no target/helloWorld*.war user@${tomcatDevIp}:/opt/tomcat/webapps/myweb.war"
+            sh "ssh user@${tomcatDevIp} sudo systemctl restart tomcat.service"
+        }
+    }
+}

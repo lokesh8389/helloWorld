@@ -14,7 +14,7 @@
         <properties>
         <jersey.version>2.27</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <ip>35.202.243.21</ip>
+      <ip>35.226.179.116</ip>
     </properties>
     <build>
         <finalName>helloWorld</finalName>
